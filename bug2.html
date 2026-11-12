@@ -1,0 +1,114 @@
+
+<div class="demo-apagar">
+  <h3>Apagar tema</h3>
+
+  <label for="demo-tema-apagar">Valor do tema</label>
+
+  <input type="text" id="demo-tema-apagar" value="escuro">
+
+  <div class="btns">
+    <button onclick="gravarTemaParaApagar()">
+      Gravar tema
+    </button>
+
+    <button onclick="apagarTema()">
+      Apagar tema
+    </button>
+  </div>
+
+  <div class="terminal" id="demo-tema-resultado"></div>
+</div>
+
+<style>
+.demo-apagar {
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 480px;
+}
+
+.demo-apagar h3 {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  color: #1e1b4b;
+}
+
+.demo-apagar label {
+  display: block;
+  font-weight: 700;
+  font-size: 0.82rem;
+  color: #334155;
+  margin-bottom: 4px;
+}
+
+.demo-apagar input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+.demo-apagar .btns {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.demo-apagar button {
+  background: #7c3aed;
+  color: #ffffff;
+  border: none;
+  padding: 9px 16px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 0.82rem;
+}
+
+.demo-apagar button:hover {
+  background: #6d28d9;
+}
+
+.demo-apagar .terminal {
+  background: #0b0518;
+  color: #a5f3fc;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.78rem;
+  min-height: 40px;
+  word-break: break-all;
+}
+</style>
+
+<script>
+function apagarTema() {
+  document.cookie =
+    "tema=; max-age=0; path=/; SameSite=Lax";
+
+  document.getElementById("demo-tema-resultado").textContent =
+    "Cookie tema apagado!";
+}
+
+function gravarTemaParaApagar() {
+  var valor = document.getElementById("demo-tema-apagar").value;
+
+  if (!valor.trim()) {
+    document.getElementById("demo-tema-resultado").textContent =
+      "Digite um tema antes de gravar.";
+    return;
+  }
+
+  document.cookie =
+    "tema=" + encodeURIComponent(valor) +
+    "; max-age=3600; path=/; SameSite=Lax";
+
+  document.getElementById("demo-tema-resultado").textContent =
+    "Cookie tema=" + valor + " gravado!";
+}
+</script>
